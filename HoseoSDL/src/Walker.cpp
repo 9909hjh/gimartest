@@ -10,7 +10,7 @@ Walker::Walker(int x, int y)
 
 void Walker::update() 
 {
-  
+  //깃허브 테스트
 }
 
 void Walker::draw(SDL_Renderer* renderer)
