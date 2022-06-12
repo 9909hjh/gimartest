@@ -1,21 +1,18 @@
 #pragma once
-#include "Vehicle.h"
+#include "Vector2D.h"
+#include <iostream>
 
-class Target : public Vehicle
+class Target : public Vector2D
 {
 public:
-	Target(int _x, int _y);
-	virtual void draw(SDL_Renderer* renderer);
-	virtual void update();
-	virtual void applyForce(Vector2D* force);
+	Target(int _x, int _y, int _r) : Vector2D(_x, _y), x(_x), y(_y), r(_r) {}
 
-	Vector2D Hide(Vector2D* target);
+	void draw(SDL_Renderer* renderer)
+	{
+		filledCircleRGBA(renderer, x, y, r, 100, 100, 100, 100);
+	}
 
+	int getR() {return r; }
 private:
-	Vector2D* hidespot;
-	Vector2D* VehPos;
-	Vector2D* ToOb;
-
-	float DistanceFormBoundary;
-	float DistAway;
+	int x, y, r;
 };

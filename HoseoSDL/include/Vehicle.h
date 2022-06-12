@@ -1,10 +1,10 @@
 #pragma once
-
 #include <main.h>
 
 #include "Vector2D.h"
 #include "Game.h"
 #include "InputHandler.h"
+#include "Target.h"
 
 class Vehicle
 {
@@ -13,10 +13,16 @@ public:
 	void draw(SDL_Renderer* renderer);
 	void update();
 
-	Vector2D seek(Vector2D* target, bool arrival);
-	Vector2D arrive(Vector2D* force);
+	Vector2D getNormalPoint(Target* p, Vector2D* a, Vector2D* v);
+	void avoid(Target* obstacle);
+
 	void applyForce(Vector2D* force);
-	Vector2D Rradian(float x, float y, float radian);
+	Vector2D goradian(float x, float y, float radian);
+
+	void edges();
+
+	Vector2D getPos() { return *m_pos; }
+	float getR() { return r; }
 
 protected:
 	Vector2D* m_pos;
@@ -29,17 +35,26 @@ protected:
 	Vector2D* rdi2;
 	Vector2D* rdi3;
 
-	Vector2D* m_target;
-	Vector2D* m_prediction;
-	Vector2D* DesiredVelocity;
-	Vector2D* steer;
+	//obstacle.
+	Vector2D* posp;
+	Vector2D* normalPoint;
+	Vector2D* normal;
+	float d1;
+	float d2;
+	Vector2D* m_end;
+	Target* emtiy;
+	Vector2D* m_vel2;
 
-	int maxspeed;
-	int r;
+	float result;
+
+	int maxSpeed;
 	float maxForce;
-	float desiredspeed;
+	int r;
+	float desiredSpeed;
 
 	double distance;
 	const double DecelerationTweaker;
 	double speed;
+
+	int seeingDistace;
 };

@@ -23,11 +23,11 @@ public:
     }
     
     // 내적 연산
-    static float dot(const Vector2D& v1, const Vector2D& v2)
+    static float dot(const Vector2D* v1, const Vector2D* v2)
     {
-      Vector2D vn1 = v1;
+      Vector2D vn1 = *v1;
       vn1.normalize();
-      Vector2D vn2 = v2;
+      Vector2D vn2 = *v2;
       vn2.normalize();
 
       float vn = vn1.m_x * vn2.m_x + vn1.m_y + vn2.m_y;
