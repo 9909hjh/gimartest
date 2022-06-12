@@ -1,11 +1,9 @@
 #include "Vehicle.h"
 #include <random>
-//#include <algorithm>
-//#include <math.h>
 
 
-Vehicle::Vehicle(int x, int y) : r(16), maxSpeed(4), maxForce(0.25f), desiredSpeed(0),
-distace(0), Deceleration(1.f), speed(0), seeingDistace(0)
+Vehicle::Vehicle(int x, int y) : maxSpeed(4), r(16), maxForce(0.25f), distance(0),
+dec(1.f), speed(0)
 {
 	m_pos = new Vector2D(x, y);
 	m_vel = new Vector2D(0, 0);
@@ -40,6 +38,7 @@ Vector2D Vehicle::Rradian(float x, float y, float radian)
 	return rota;
 }
 
+
 Vector2D Vehicle::arrive(Vector2D* target)
 {
 	return seek(target);
@@ -48,15 +47,15 @@ Vector2D Vehicle::arrive(Vector2D* target)
 Vector2D Vehicle::seek(Vector2D* target)
 {
 	*m_force = *target - *m_pos;
-	distace = m_force->length();
+	distance = m_force->length();
 
-	if (distace > 0)
+	if (distance > 0)
 	{
-		speed = distace / (10 * Deceleration);
+		speed = distance / (10 * dec);
 		speed = std::min(speed, (float)maxSpeed);
 
 		*m_force *= speed;
-		*m_force /= distace;
+		*m_force /= distance;
 		*m_force -= *m_vel;
 
 		return *m_force;
@@ -76,6 +75,4 @@ void Vehicle::draw(SDL_Renderer* renderer)
 		rdi2->getX() + m_pos->getX(), rdi2->getY() + m_pos->getY(),
 		rdi3->getX() + m_pos->getX(), rdi3->getY() + m_pos->getY(),
 		255, 255, 255, 255);
-
-
 }

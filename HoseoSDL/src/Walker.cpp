@@ -13,12 +13,10 @@ std::uniform_int_distribution<int> dis(100, 400);
 Walker::Walker()
 {
     m_Vehicle.push_back(new Vehicle(100, 100));
+    m_Target.push_back(new Target(300, 100));
 
-    m_Target.push_back(new Target(300, 300));
-
-    m_mouse = new Vector2D(0, 0);
-    T_steering = new Vector2D(0, 0);
     steering = new Vector2D(0, 0);
+    T_steering = new Vector2D(0, 0);
 }
 
 void Walker::update()
@@ -34,12 +32,12 @@ void Walker::update()
         *steering = m_Vehicle[i]->arrive(T_steering);
         m_Vehicle[i]->applyForce(steering);
     }
+
 }
 
 void Walker::draw(SDL_Renderer* renderer)
 {
-    filledCircleRGBA(renderer, m_mouse->getX(), m_mouse->getY(), 10, 100, 200, 100, 100);
-
+    filledCircleRGBA(renderer, m_mouse->getX(), m_mouse->getY(), 10, 100, 100, 200, 100);
     for (int i = 0; i != m_Vehicle.size(); i++)
     {
         m_Vehicle[i]->draw(renderer);

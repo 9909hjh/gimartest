@@ -8,7 +8,6 @@
 #include "Vehicle.h"
 #include <vector>
 
-
 class Walker
 {
 public:
@@ -19,7 +18,7 @@ public:
 private:
 	std::vector<Vehicle*> m_Vehicle;
 	std::vector<Target*> m_Target;
+	Vector2D* m_mouse;
 	Vector2D* steering;
 	Vector2D* T_steering;
-	Vector2D* m_mouse;
 };

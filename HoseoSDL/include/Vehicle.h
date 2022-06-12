@@ -26,15 +26,11 @@ protected:
 	Vector2D* rdi2;
 	Vector2D* rdi3;
 
-	int r;
 	int maxSpeed;
+	int r;
 	float maxForce;
 
-	float desiredSpeed;
-
-	float distace;
-	const float Deceleration;
+	float distance;
+	const float dec;
 	float speed;
-
-	int seeingDistace;
 };
