@@ -1,14 +1,13 @@
 #pragma once
 
 #include <main.h>
-#include "InputHandler.h"
-#include "Vector2D.h"
 #include "Game.h"
-
-#include "Vehicle.h"
+#include "InputHandler.h"
 #include "Target.h"
+#include "Vector2D.h"
+#include "Vehicle.h"
 #include <vector>
-#include <iostream>
+
 
 class Walker
 {
@@ -20,8 +19,7 @@ public:
 private:
 	std::vector<Vehicle*> m_Vehicle;
 	std::vector<Target*> m_Target;
-	Vector2D* m_mousePos;
-	Vector2D* target;
 	Vector2D* steering;
 	Vector2D* T_steering;
+	Vector2D* m_mouse;
 };
